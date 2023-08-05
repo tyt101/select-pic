@@ -11,11 +11,6 @@ onHide(() => {
 })
 </script>
 <script lang="ts">
-export default {
-  globalData: {
-    imgPrefix: 'https://oss.lafyun.com/4dwue6-data/wx/',
-    defaultAvatar: 'https://oss.lafyun.com/4dwue6-data/wx/avatar.png',
-  },
-}
+export default {}
 </script>
 <style></style>
