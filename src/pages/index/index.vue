@@ -34,7 +34,15 @@
           >赫本人像</view
         >
       </view>
-      <view class="tree-select-r"></view>
+      <view class="tree-select-r">
+        <view v-for="item in 20" :key="item" class="r-item">
+          <view class="image">
+            <image src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" mode="widthFix"> </image>
+          </view>
+          <view class="name">简爱</view>
+          <view class="style">STYLE: <span>广州~天河</span><span>婚纱</span><span>个人</span></view>
+        </view>
+      </view>
     </view>
     <tab-bar />
   </view>
@@ -120,10 +128,32 @@ const switchLBtn = (val: number) => {
   }
   &-r {
     flex: 5;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 580rpx);
+    overflow: scroll;
   }
 }
 
 .l-item {
   padding: 20rpx 0;
+}
+
+.r-item {
+  margin: 20rpx;
+  background-color: rgb(232, 232, 233);
+  border-radius: 20rpx 0 20rpx 20rpx;
+  padding: 10rpx 20rpx;
+  .image {
+    border-radius: 20rpx 0 20rpx 20rpx;
+    image {
+      width: 100%;
+    }
+  }
+  .name {
+  }
+  .style {
+    margin: 5rpx 0;
+  }
 }
 </style>
