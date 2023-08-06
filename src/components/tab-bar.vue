@@ -28,8 +28,6 @@
 import { reactive, ref, computed, watch, defineProps } from 'vue'
 import type { TabItem } from '@/types/tab'
 import { useStore } from 'vuex'
-import { useRoute, useRouter } from 'vue-router'
-
 uni.hideTabBar()
 const store = useStore()
 const tabBar = reactive<{ list: TabItem[] }>({
@@ -50,12 +48,6 @@ const tabBar = reactive<{ list: TabItem[] }>({
       text: '我的',
     },
   ],
-})
-const Props = defineProps({
-  tab: {
-    type: Number,
-    default: 1,
-  },
 })
 // 有套系
 const hasSet = computed(() => {

@@ -64,7 +64,7 @@
       "van-cell-group": "/wxcomponents/vant/cell-group/index",
       "van-field": "/wxcomponents/vant/field/index",
       "van-button": "/wxcomponents/vant/button/index",
-      "van-icon": "/wxcomponents/vant/icon/index"
+      "van-icon": "/wxcomponents/vant/icon/index",
     }
   }
 }
