@@ -1,16 +1,12 @@
 <template>
   <view class="content">
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
+    <view class="text-area"></view>
+    <van-button>bvn</van-button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-const title = ref('Hello')
-
-onMounted(async () => {})
 </script>
 
 <style lang="scss">
