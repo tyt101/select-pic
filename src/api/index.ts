@@ -1,6 +1,5 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { userStore } from '@/store/module/user'
 interface userInfo {
   userInfo: {
     token: string
