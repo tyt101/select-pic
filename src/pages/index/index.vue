@@ -2,10 +2,12 @@
   <view class="content">
     <view class="text-area"></view>
     <van-button>bvn</van-button>
+    <tab-bar />
   </view>
 </template>
 
 <script setup lang="ts">
+import tabBar from '@/components/tab-bar.vue'
 import { onMounted, ref } from 'vue'
 </script>
 

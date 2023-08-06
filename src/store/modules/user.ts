@@ -3,16 +3,15 @@ import type { USER_INFO_TYPE } from '@/types/login'
 const userModule = {
   namespaced: true,
   state: {
-    /**
-     * @description 管理员等级(与权限按`钮相关联)
-     * @enum 0 免费版，1 基础版，3 专业版，4 旗舰版
-     */
-    // 是否是管理员
-    isAdmin: false,
     // 用户信息
-    userInfo: {},
+    userInfo: {
+      vip: 1,
+      isadmin: 1,
+    },
     // token
     token: '',
+    // tab栏目切换
+    selectedIndex: 'pages/index/index',
   },
   mutations: {
     SET_VIP_LEVEL(state, val: number) {
@@ -24,11 +23,16 @@ const userModule = {
     SET_USERINFO(state, val: USER_INFO_TYPE) {
       state.userInfo = val
     },
+    SET_SELECTED_INDEX(state, val: string) {
+      state.selectedIndex = val
+      console.log('state.selectedIndex:', state.selectedIndex)
+    },
   },
   actions: {},
   getters: {
-    getVipLevel(state) {
-      return state.userInfo.vip
+    // 有套系界面的用户
+    getHasSetUser(state) {
+      return state.userInfo.isadmin === 1 && state.userInfo.vip > 0
     },
   },
 }
