@@ -1,3 +1,4 @@
+// 用户信息
 export interface USER_INFO_TYPE {
   uid: number
   sex: number
@@ -13,4 +14,12 @@ export interface USER_INFO_TYPE {
    */
   vip: number
   email: string
+}
+
+// 用户登陆
+export interface QUE_LOGIN {
+  vc: string
+  pwd: string
+  source: string
+  tav: string
 }

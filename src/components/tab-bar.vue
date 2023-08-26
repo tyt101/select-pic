@@ -8,11 +8,13 @@
         @click="switchTab(index, item)"
       >
         <template v-if="hasSet">
+          <uni-icon class="iconfont" :class="item.icon" font-family="icon-font"></uni-icon>
           <text :class="['item-text', { 'text-active': store.state.user.selectedIndex === item.pagePath }]">
             {{ item.text }}
           </text>
         </template>
         <template v-else>
+          <uni-icon class="iconfont" :class="item.icon" font-family="iconfont"></uni-icon>
           <text
             v-if="item.index !== 2"
             :class="['item-text', { 'text-active': store.state.user.selectedIndex === item.pagePath }]"
@@ -35,16 +37,19 @@ const tabBar = reactive<{ list: TabItem[] }>({
     {
       index: 1,
       pagePath: 'pages/index/index',
+      icon: 'icon-zhuye',
       text: '首页',
     },
     {
       index: 2,
       pagePath: 'pages/set/index',
+      icon: 'icon-xinfeng',
       text: '套系',
     },
     {
       index: 3,
       pagePath: 'pages/my/index',
+      icon: 'icon-wodewo',
       text: '我的',
     },
   ],
