@@ -1,3 +1,4 @@
+// Tab栏
 export interface TabItem {
   index: number
   pagePath: string

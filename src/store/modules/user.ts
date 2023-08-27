@@ -1,5 +1,5 @@
 // store/modules/user.js
-import type { USER_INFO_TYPE } from '@/types/login'
+import type { RES_USER_INFO } from '@/types/login'
 const userModule = {
   namespaced: true,
   state: {
@@ -20,7 +20,7 @@ const userModule = {
     SET_ADMIN(state, val: boolean) {
       state.isAdmin = val
     },
-    SET_USERINFO(state, val: USER_INFO_TYPE) {
+    SET_USERINFO(state, val: RES_USER_INFO) {
       state.userInfo = val
     },
     SET_SELECTED_INDEX(state, val: string) {
@@ -29,12 +29,7 @@ const userModule = {
     },
   },
   actions: {},
-  getters: {
-    // 有套系界面的用户
-    getHasSetUser(state) {
-      return state.userInfo.isadmin === 1 && state.userInfo.vip > 0
-    },
-  },
+  getters: {},
 }
 
 export default userModule

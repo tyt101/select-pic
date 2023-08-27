@@ -7,21 +7,10 @@
         class="navigator-item"
         @click="switchTab(index, item)"
       >
-        <template v-if="hasSet">
-          <uni-icon class="iconfont" :class="item.icon" font-family="icon-font"></uni-icon>
-          <text :class="['item-text', { 'text-active': store.state.user.selectedIndex === item.pagePath }]">
-            {{ item.text }}
-          </text>
-        </template>
-        <template v-else>
-          <uni-icon class="iconfont" :class="item.icon" font-family="iconfont"></uni-icon>
-          <text
-            v-if="item.index !== 2"
-            :class="['item-text', { 'text-active': store.state.user.selectedIndex === item.pagePath }]"
-          >
-            {{ item.text }}
-          </text>
-        </template>
+        <uni-icon class="iconfont" :class="item.icon" font-family="icon-font"></uni-icon>
+        <text :class="['item-text', { 'text-active': store.state.user.selectedIndex === item.pagePath }]">
+          {{ item.text }}
+        </text>
       </view>
     </view>
   </view>
@@ -54,10 +43,6 @@ const tabBar = reactive<{ list: TabItem[] }>({
     },
   ],
 })
-// 有套系
-const hasSet = computed(() => {
-  return store.getters['user/getHasSetUser']
-})
 const switchTab = (tabIndex: number, tab: TabItem) => {
   let url = `/${tab.pagePath}`
   let pagePath = url
@@ -81,7 +66,6 @@ const switchTab = (tabIndex: number, tab: TabItem) => {
 
 .navigator {
   display: flex;
-  width: 85%;
   margin: 0 auto;
   padding: 20rpx;
 }
@@ -90,7 +74,7 @@ const switchTab = (tabIndex: number, tab: TabItem) => {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 50rpx;
+  width: 30%;
   height: 100%;
   flex: 1;
 }

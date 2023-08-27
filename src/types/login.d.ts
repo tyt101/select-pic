@@ -1,5 +1,5 @@
 // 用户信息
-export interface USER_INFO_TYPE {
+export interface RES_USER_INFO {
   uid: number
   sex: number
   birthday: number

@@ -11,7 +11,7 @@
     </view>
     <view class="login">
       <button class="mini-btn">获取验证码</button>
-      <button class="mini-btn">登陆</button>
+      <button class="mini-btn" @click="handleLogin">登陆</button>
     </view>
   </view>
   <view class="login-way">
@@ -25,12 +25,20 @@
 import tabBar from '@/components/tab-bar.vue'
 import type { QUE_LOGIN } from '@/types/login'
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { login } from '@/api/user'
+const store = useStore()
 const req_login = ref<QUE_LOGIN>({
-  vc: '',
-  pwd: '',
+  vc: 'admin',
+  pwd: 'E10ADC3949BA59ABBE56E057F20F883E',
   source: '1',
   tav: '98F6FAD709E28617CF0421CC885C484F',
 })
+const handleLogin = async () => {
+  const res = await login({
+    ...req_login.value,
+  })
+}
 </script>
 <style lang="scss" scoped>
 .top {
@@ -90,3 +98,4 @@ const req_login = ref<QUE_LOGIN>({
   }
 }
 </style>
+@/api/index

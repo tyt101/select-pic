@@ -1,7 +1,7 @@
-import http from '..'
+import http from '@/utils/http/index'
 // 登陆
 export const login = (data: Object) =>
-  http.request({
+  http({
     url: '/api/login',
     method: 'POST',
     data,
@@ -9,7 +9,7 @@ export const login = (data: Object) =>
 
 // 验证登陆
 export const checkToken = (data: Object) =>
-  http.request({
+  http({
     url: '/api/CheckToken',
     method: 'POST',
     data,
@@ -17,7 +17,7 @@ export const checkToken = (data: Object) =>
 
 // 获取用户信息
 export const getUserInfo = (data: Object) =>
-  http.request({
+  http({
     url: '/api/GetUserInfo',
     method: 'POST',
     data,
