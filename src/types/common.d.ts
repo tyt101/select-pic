@@ -5,6 +5,13 @@ export interface APIRESPONSE<T> {
   count: number
 }
 
+// 获取首页轮播图
+export interface Banner {
+  BIIID: number
+  Title: null
+  ImgUrl: string
+}
+
 // 系统基础资料
 export interface RES_BASIC_REFERENCE {
   take?: TAKE[]

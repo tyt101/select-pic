@@ -7,7 +7,7 @@
     </view>
     <view class="password">
       <view class="title">KEY</view>
-      <input v-model="req_login.pwd" type="password" class="uni-input" placeholder="请输入密码" />
+      <input v-model="pass" type="password" class="uni-input" placeholder="请输入密码" />
     </view>
     <view class="login">
       <button class="mini-btn">获取验证码</button>
@@ -27,17 +27,30 @@ import type { QUE_LOGIN } from '@/types/login'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { login } from '@/api/user'
+import type { APIRESPONSE } from '@/types/common'
+import { hexMd5 } from '@/utils/md5'
 const store = useStore()
+const pass = ref<string>('')
 const req_login = ref<QUE_LOGIN>({
   vc: 'admin',
-  pwd: 'E10ADC3949BA59ABBE56E057F20F883E',
+  pwd: '',
   source: '1',
   tav: '98F6FAD709E28617CF0421CC885C484F',
 })
 const handleLogin = async () => {
-  const res = await login({
-    ...req_login.value,
-  })
+  req_login.value.pwd = hexMd5(pass.value).toUpperCase()
+  try {
+    const res: APIRESPONSE<[{ token: string }]> = await login({
+      ...req_login.value,
+    })
+    if (res.code === 0) {
+      const token = res.data[0].token
+      store.commit('user/SET_TOKEN', token)
+      uni.setStorageSync('select_token', token)
+    }
+  } catch (error) {
+    console.log('error:', error)
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -102,7 +102,7 @@ class Request {
 
       if (!next) return
       let mergeUrl = Request.posUrl(_config.url) ? _config.url : _config.baseUrl + _config.url
-      if (JSON.stringify(_config.params) === '{}') {
+      if (_config.params && JSON.stringify(_config.params) !== '{}') {
         const params = Request.addQueryString(_config.params)
         mergeUrl += mergeUrl.indexOf('?') !== -1 ? `&${params}` : `?${params}`
       }

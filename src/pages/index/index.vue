@@ -10,9 +10,9 @@
         :interval="interval"
         :duration="duration"
       >
-        <swiper-item v-for="item in images" :key="item">
+        <swiper-item v-for="item in bannerList" :key="item.BIIID">
           <view class="swiper-item">
-            <image :src="item" mode="aspectFit"></image>
+            <image :src="item.ImgUrl" mode="aspectFit"></image>
           </view>
         </swiper-item>
       </swiper>
@@ -26,13 +26,13 @@
     <view class="tree-select">
       <view class="tree-select-l">
         <view
-          v-for="(item, index) in 20"
-          :key="item"
+          v-for="(item, index) in themeList.data"
+          :key="item.ThemeID"
           class="l-item"
           :class="selectedLBtn === index ? 'tree-select-active' : ''"
           @click="switchLBtn(index)"
-          >赫本人像</view
-        >
+          >{{ item.ThemeName }}
+        </view>
       </view>
       <view class="tree-select-r">
         <view v-for="item in 20" :key="item" class="r-item">
@@ -51,6 +51,10 @@
 <script setup lang="ts">
 import tabBar from '@/components/tab-bar.vue'
 import { onMounted, ref } from 'vue'
+import type { APIRESPONSE, RES_BASIC_REFERENCE, THEME, Banner } from '@/types/common'
+import { getBasicReference, getBanner } from '@/api/common'
+import { reactive } from 'vue'
+// 轮播
 const indicatorDots = ref(true)
 const autoplay = ref(true)
 const interval = ref(2000)
@@ -59,6 +63,19 @@ const images = [
   'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
   'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
 ]
+let bannerList = ref<Banner[]>([])
+const getBannerList = async () => {
+  try {
+    const res: APIRESPONSE<Banner[]> = await getBanner()
+    if (res.code === 0) {
+      bannerList.value = res.data
+    }
+  } catch (error) {
+    console.log('error:', error)
+  }
+}
+getBannerList()
+
 const selectedPicBtn = ref(1)
 const switchPic = (val: number) => {
   selectedPicBtn.value = val
@@ -68,6 +85,25 @@ const selectedLBtn = ref(0)
 const switchLBtn = (val: number) => {
   selectedLBtn.value = val
 }
+
+// 主题列表
+let themeList = reactive<{ data: THEME[] }>({
+  data: [],
+})
+const getThemeList = async () => {
+  try {
+    const res: APIRESPONSE<RES_BASIC_REFERENCE> = await getBasicReference({
+      source: 1,
+      datastr: 'theme',
+    })
+    if (res.code === 0) {
+      themeList.data = res.data.theme as THEME[]
+    }
+  } catch (error) {
+    console.log('error:', error)
+  }
+}
+getThemeList()
 </script>
 
 <style lang="scss">
@@ -83,7 +119,7 @@ const switchLBtn = (val: number) => {
 .swiper-item {
   display: block;
   height: 400rpx;
-  line-height: 300rpx;
+  line-height: 400rpx;
   text-align: center;
   image {
     width: 100%;

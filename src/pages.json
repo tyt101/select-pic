@@ -9,6 +9,14 @@
 			}
 		},
 		{
+			"path": "pages/index/index",
+			"style": {
+				"app-plus" : {
+					"titleNView": false
+				}
+			}
+		},
+		{
 			"path": "pages/person/index",
 			"style": {
 				"app-plus" : {
@@ -16,14 +24,6 @@
 						"titleText": "个人中心",
 						"homeButton": true
 					}
-				}
-			}
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"app-plus" : {
-					"titleNView": false
 				}
 			}
 		},

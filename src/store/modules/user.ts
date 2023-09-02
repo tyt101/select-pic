@@ -25,7 +25,9 @@ const userModule = {
     },
     SET_SELECTED_INDEX(state, val: string) {
       state.selectedIndex = val
-      console.log('state.selectedIndex:', state.selectedIndex)
+    },
+    SET_TOKEN(state, token: string) {
+      state.token = token
     },
   },
   actions: {},

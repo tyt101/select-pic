@@ -4,8 +4,8 @@ export default function api(options) {
   const { url, data = {}, showToast = true, method } = options
   const request = new Request()
   request.interceptor.request((config, cancel) => {
-    if (uni.getStorageSync('userInfo')) {
-      const token = (JSON.parse(uni.getStorageSync('userInfo')) as UserInfo).token
+    if (uni.getStorageSync('select_token')) {
+      const token = uni.getStorageSync('select_token') as string
       if (token) {
         config.header['token'] = token
       } else {

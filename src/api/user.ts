@@ -1,6 +1,7 @@
+import type { APIRESPONSE } from '@/types/common'
 import http from '@/utils/http/index'
 // 登陆
-export const login = (data: Object) =>
+export const login = (data: Object): APIRESPONSE<[{ token: string }]> =>
   http({
     url: '/api/login',
     method: 'POST',
