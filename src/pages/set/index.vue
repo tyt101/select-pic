@@ -16,10 +16,12 @@
     </view>
     <view class="set-detail">点击查看详情</view>
   </view>
+  <BottomVue />
   <tab-bar />
 </template>
 <script setup lang="ts">
 import tabBar from '@/components/tab-bar.vue'
+import BottomVue from '@/components/bottom.vue'
 </script>
 <style lang="scss" scoped>
 image {

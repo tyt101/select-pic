@@ -19,6 +19,7 @@
     <uni-icon class="iconfont icon-shoujidenglu" font-family="icon-font"></uni-icon>
     <uni-icon class="iconfont icon-weixin" font-family="icon-font"></uni-icon>
   </view>
+  <ButtonVue />
   <tab-bar />
 </template>
 <script setup lang="ts">
@@ -29,6 +30,7 @@ import { useStore } from 'vuex'
 import { login } from '@/api/user'
 import type { APIRESPONSE } from '@/types/common'
 import { hexMd5 } from '@/utils/md5'
+import ButtonVue from '@/components/bottom.vue'
 const store = useStore()
 const pass = ref<string>('')
 const req_login = ref<QUE_LOGIN>({
@@ -47,6 +49,9 @@ const handleLogin = async () => {
       const token = res.data[0].token
       store.commit('user/SET_TOKEN', token)
       uni.setStorageSync('select_token', token)
+      uni.navigateTo({
+        url: '/pages/person/index',
+      })
     }
   } catch (error) {
     console.log('error:', error)

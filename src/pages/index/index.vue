@@ -35,7 +35,7 @@
         </view>
       </view>
       <view class="tree-select-r">
-        <view v-for="item in 20" :key="item" class="r-item">
+        <view v-for="item in 20" :key="item" class="r-item" @click="goDetail(item)">
           <view class="image">
             <image src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" mode="widthFix"> </image>
           </view>
@@ -59,10 +59,6 @@ const indicatorDots = ref(true)
 const autoplay = ref(true)
 const interval = ref(2000)
 const duration = ref(500)
-const images = [
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
-]
 let bannerList = ref<Banner[]>([])
 const getBannerList = async () => {
   try {
@@ -76,11 +72,13 @@ const getBannerList = async () => {
 }
 getBannerList()
 
+// 样片/客片按钮
 const selectedPicBtn = ref(1)
 const switchPic = (val: number) => {
   selectedPicBtn.value = val
 }
 
+// 主题选择按钮
 const selectedLBtn = ref(0)
 const switchLBtn = (val: number) => {
   selectedLBtn.value = val
@@ -104,9 +102,16 @@ const getThemeList = async () => {
   }
 }
 getThemeList()
+
+// 主题详情
+const goDetail = (theme: THEME) => {
+  uni.navigateTo({
+    url: '/pages/index/detail?id=' + theme.ThemeID,
+  })
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .content {
   height: 100%;
   overflow: hidden;
